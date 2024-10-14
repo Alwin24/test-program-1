@@ -1,15 +1,18 @@
 [toolchain]
 
 [features]
-resolution = true
+seeds = false
 skip-lint = false
 
 [programs.localnet]
-test_program_1 = "Fg6PaFpoGXkYsidMpWTK6W2BeZ7FEfcYkg476zPFsLnS"
+test_program_1 = "BiPhBki2N2m9EtALKMPFjs2KPuwJ2vdU7wMUHkkc3CAd"
 
 [registry]
 url = "https://api.apr.dev"
 
 [provider]
 cluster = "Localnet"
-wallet = "~/.config/solana/id.json"
+wallet = "/home/alwin-helor/.config/solana/id.json"
+
+[scripts]
+test = "yarn run ts-mocha -p ./tsconfig.json -t 1000000 tests/test-program-1.ts"

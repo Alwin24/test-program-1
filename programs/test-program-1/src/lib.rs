@@ -4,37 +4,30 @@ use light_sdk::{
     merkle_context::PackedAddressMerkleContext,
 };
 
-declare_id!("Fg6PaFpoGXkYsidMpWTK6W2BeZ7FEfcYkg476zPFsLnS");
+declare_id!("BiPhBki2N2m9EtALKMPFjs2KPuwJ2vdU7wMUHkkc3CAd");
 
 #[light_program]
 #[program]
 pub mod test_program_1 {
     use super::*;
 
-    pub fn create<'info>(
-        ctx: LightContext<'_, '_, '_, 'info, Create<'info>>,
-    ) -> Result<()> {
+    pub fn create<'info>(ctx: LightContext<'_, '_, '_, 'info, Create<'info>>) -> Result<()> {
         ctx.light_accounts.counter.owner = ctx.accounts.signer.key();
         ctx.light_accounts.counter.counter = 0;
 
         Ok(())
     }
 
-    pub fn increment<'info>(
-        ctx: LightContext<'_, '_, '_, 'info, Increment<'info>>,
-    ) -> Result<()> {
+    pub fn increment<'info>(ctx: LightContext<'_, '_, '_, 'info, Increment<'info>>) -> Result<()> {
         ctx.light_accounts.counter.counter += 1;
 
         Ok(())
     }
 
-    pub fn delete<'info>(
-        ctx: LightContext<'_, '_, '_, 'info, Delete<'info>>,
-    ) -> Result<()> {
+    pub fn delete<'info>(ctx: LightContext<'_, '_, '_, 'info, Delete<'info>>) -> Result<()> {
         Ok(())
     }
 }
-
 
 #[light_account]
 #[derive(Clone, Debug, Default)]
