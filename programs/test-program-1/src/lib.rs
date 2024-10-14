@@ -27,6 +27,10 @@ pub mod test_program_1 {
     pub fn delete<'info>(ctx: LightContext<'_, '_, '_, 'info, Delete<'info>>) -> Result<()> {
         Ok(())
     }
+
+    pub fn no_operation(_ctx: Context<NoOperator>, _state: State) -> Result<()> {
+        Ok(())
+    }
 }
 
 #[light_account]
@@ -93,4 +97,12 @@ pub struct Delete<'info> {
         constraint = counter.owner == signer.key() @ CustomError::Unauthorized
     )]
     pub counter: LightAccount<CounterCompressedAccount>,
+}
+
+#[derive(Accounts)]
+pub struct NoOperator {}
+
+#[derive(AnchorSerialize, AnchorDeserialize)]
+pub struct State {
+    counter: CounterCompressedAccount,
 }
